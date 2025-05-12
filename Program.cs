@@ -1,41 +1,51 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-
+using System;
+using System.Linq;
 
 namespace TestRunner
 {
+    /// <summary>
+    /// This project is designed to run tests concurrently across multiple threads.
+    /// It reads the number of threads from the user, prepares the test environment, 
+    /// and then executes the test classes in parallel. Each thread processes a task 
+    /// from a shared queue of test classes, executing them using the `dotnet test` command.
+    /// Results are collected, printed with color coding to indicate success or failure,
+    /// and the directory is cleaned up after the tests are completed.
+    /// </summary>
     public class Program
     {
-        private static int numberOfThreads;
-        // tuple of thread, status, dirOfThread, resonse of the tests
+        private static int numberOfThreads; // Number of threads to run tests concurrently
         private static ThreadState[] threads;
-        private static ConcurrentQueue<string> TestsQueue; // it's a safe queue for multi threading
+        private static ConcurrentQueue<string> TestsQueue;
+
+        private static Dictionary<string, string> Projects = new Dictionary<string, string>(){
+            { "MS_TEST", "C:\\Users\\Afshin\\Desktop\\project\\RTProSL-Test\\RTProSL-MSTest\\bin\\Debug\\net7.0"},
+            { "", ""}
+        };
 
         public static void Main(string[] args)
         {
+            // Main method responsible for setting up threads and managing the overall test execution process
             numberOfThreads = int.Parse(Console.ReadLine());
             threads = new ThreadState[numberOfThreads];
 
             var TestsLst = findTestClasses();
             TestsQueue = new ConcurrentQueue<string>(TestsLst.Take(5).ToList());
 
-            // know we want to run test on some threads
             for (int i = 0; i < numberOfThreads; i++)
             {
                 int id = i;
-                
+
                 threads[i] = new ThreadState();
 
                 string dirName = $"thread#{id + 1}_results";
-                Process.Start("cmd.exe", $@"/c robocopy C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\bin\Debug\net7.0 {dirName} /E").WaitForExit();
+                Process.Start("cmd.exe", $@"/c robocopy {Projects["MS_TEST"]} {dirName} /E").WaitForExit();
                 threads[i].Dir = Path.Combine(dirName, "RTProSL-MSTest.dll");
 
                 threads[i].Thread = new Thread(() => WorkerLoop(id));
@@ -45,21 +55,22 @@ namespace TestRunner
             for (int i = 0; i < numberOfThreads; i++)
             {
                 threads[i].Thread.Join();
-
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Thread #{i + 1}: Done :)");
                 Console.ResetColor();
 
-                // delete the created directory
                 string directory = Path.GetDirectoryName(threads[i].Dir);
                 if (Directory.Exists(directory))
                     Directory.Delete(directory, true);
-                
             }
         }
 
+        /// <summary>
+        /// Worker loop that continuously processes tasks from the queue until it's empty
+        /// </summary>
         private static void WorkerLoop(int threadId)
         {
+            // This method processes tasks from the queue and handles execution of tests.
             while (true)
             {
                 if (TestsQueue.TryDequeue(out string task))
@@ -74,8 +85,6 @@ namespace TestRunner
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine($"Thread #{threadId + 1}: start " + task);
                         Console.ResetColor();
-
-                        
 
                         string command = $"dotnet test {threads[threadId].Dir} --filter {task} -v=normal --logger trx;LogFileName={task}.trx";
                         TestRunner(command, threads[threadId].Output, threads[threadId].Error, threads[threadId].Lock);
@@ -102,16 +111,14 @@ namespace TestRunner
         }
 
         /// <summary>
-        ///  find all of namespace of test classes and save them in a data structure (List)
+        /// Finds all test classes in the given directory and returns them in a list
         /// </summary>
         private static List<string> findTestClasses()
         {
-            // Path to your project root directory
-            //string rootDir = @"E:\test\New\RTProSL-Test\RTProSL-MSTest"; // <-- Change this to your project path
-            string rootDir = @"C:\Users\Afshin\Desktop\project\RTProSL-Test"; // <-- Change this to your project path
+            // This method finds all test classes in the project directory and returns their fully qualified names.
+            string rootDir = @"C:\Users\Afshin\Desktop\project\RTProSL-Test";
             List<string> testClasses = new List<string>();
 
-            // Get all .cs files recursively
             foreach (var file in Directory.GetFiles(rootDir, "*.cs", SearchOption.AllDirectories))
             {
                 string[] lines = File.ReadAllLines(file);
@@ -119,36 +126,29 @@ namespace TestRunner
                 string className = "";
                 bool hasTestClassAttribute = false;
 
-                // Regex to find namespace
                 Regex namespaceRegex = new Regex(@"^\s*namespace\s+([\w\.]+)");
-                // Regex to find class
                 Regex classRegex = new Regex(@"^\s*(public|private|internal|protected|static|final|abstract)?\s*class\s+(\w+)");
-                // Regex to identify [TestClass] attribute
                 Regex testClassAttributeRegex = new Regex(@"^\s*\[TestClass\]");
 
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string line = lines[i];
 
-                    // Check for [TestClass] attribute
                     if (testClassAttributeRegex.IsMatch(line))
                     {
                         hasTestClassAttribute = true;
                     }
 
-                    // Check for namespace
                     Match nsMatch = namespaceRegex.Match(line);
                     if (nsMatch.Success)
                     {
                         namespaceName = nsMatch.Groups[1].Value;
                     }
 
-                    // Check for class
                     Match classMatch = classRegex.Match(line);
                     if (classMatch.Success)
                     {
                         className = classMatch.Groups[2].Value;
-                        // Once class is found, stop searching
                         break;
                     }
                 }
@@ -161,7 +161,7 @@ namespace TestRunner
                     }
                     else
                     {
-                        testClasses.Add(className); // Global namespace
+                        testClasses.Add(className);
                     }
                 }
             }
@@ -169,9 +169,12 @@ namespace TestRunner
             return testClasses;
         }
 
+        /// <summary>
+        /// Executes the given test command and collects output and error streams
+        /// </summary>
         private static void TestRunner(string command, StringBuilder output, StringBuilder error, object threadLock)
         {
-            // reset response
+            // This method runs the test command and handles the collection of output and error messages.
             lock (threadLock)
             {
                 output.Clear();
@@ -184,7 +187,6 @@ namespace TestRunner
 
             using (Process proc = new Process())
             {
-
                 var psi = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
@@ -218,8 +220,12 @@ namespace TestRunner
             }
         }
 
+        /// <summary>
+        /// Prints the output and error results with color coding based on pass/fail status
+        /// </summary>
         private static void ColoredPrinter(StringBuilder str)
         {
+            // This method prints the results with color coding based on success (pass) or failure (fail)
             Console.OutputEncoding = Encoding.UTF8;
             foreach (var line in str.ToString().Split('\n'))
             {
@@ -251,9 +257,9 @@ namespace TestRunner
 
             Console.ResetColor();
         }
-    
     }
 
+    // Class to store the state of each thread
     internal class ThreadState
     {
         public Thread Thread { get; set; }
