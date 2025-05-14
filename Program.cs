@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
+using Mono.Cecil;
+
 
 namespace RTProSL_TestRunner
 {
@@ -25,10 +26,19 @@ namespace RTProSL_TestRunner
         private static ThreadState[] threads;
         private static ConcurrentQueue<string> TestsQueue;
 
-        private static Dictionary<int, string> Projects = new Dictionary<int, string>(){
-            { 1 , @".\..\..\..\RTProSL-MSTest\bin\Debug\net7.0"},
-            { 2 , @".\..\..\..\RTProSL-MSTest-Reports\bin\Debug\net7.0"}
+        // this one is for running from slution directory
+        private static Dictionary<int, string> ProjectsDict = new Dictionary<int, string>(){
+            { 1 , @".\..\RTProSL-Test\RTProSL-MSTest\bin\Debug\net7.0"},
+            { 2 , @".\..\RTProSL-Test\RTProSL-MSTest-Reports\bin\Debug\net7.0"}
         };
+        // this one is for running from debug directory
+        //private static Dictionary<int, string> ProjectsDict = new Dictionary<int, string>(){
+        //    { 1 , @".\..\..\..\RTProSL-MSTest\bin\Debug\net7.0"},
+        //    { 2 , @".\..\..\..\RTProSL-MSTest-Reports\bin\Debug\net7.0"}
+        //};
+
+        private static int projectKey;
+        
 
         public static void Main(string[] args)
         {
@@ -41,12 +51,18 @@ namespace RTProSL_TestRunner
             numberOfThreads = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Which project do you want to run?\n  1-RTProSL_MSTest\n  2-RTProSL_MSTest_Reports");
-            int project = int.Parse(Console.ReadLine());
+            projectKey = int.Parse(Console.ReadLine());
 
             threads = new ThreadState[numberOfThreads];
 
             var TestsLst = findTestClasses();
-            TestsQueue = new ConcurrentQueue<string>(TestsLst.Take(3).ToList());
+            TestsQueue = new ConcurrentQueue<string>(TestsLst);
+
+            // print number of test classes
+            Console.WriteLine(TestsLst.Count() + "test classes were found");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("------------------------------------------------------------------------\n");
+            Console.ResetColor();
 
             for (int i = 0; i < numberOfThreads; i++)
             {
@@ -55,7 +71,7 @@ namespace RTProSL_TestRunner
                 threads[i] = new ThreadState();
 
                 string dirName = $"thread#{id + 1}_results";
-                Process.Start("cmd.exe", $@"/c robocopy {Projects[project]} {dirName} /E").WaitForExit();
+                Process.Start("cmd.exe", $@"/c robocopy {ProjectsDict[projectKey]} {dirName} /E").WaitForExit();
                 threads[i].Dir = Path.Combine(dirName, "RTProSL-MSTest.dll");
 
                 threads[i].Thread = new Thread(() => WorkerLoop(id));
@@ -81,7 +97,7 @@ namespace RTProSL_TestRunner
             string formattedTime = stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"execution time: {formattedTime}");
+            Console.WriteLine($"\nexecution time: {formattedTime}");
             Console.ResetColor();
         }
 
@@ -135,58 +151,26 @@ namespace RTProSL_TestRunner
         /// </summary>
         private static List<string> findTestClasses()
         {
-            // This method finds all test classes in the project directory and returns their fully qualified names.
-            string rootDir = @"C:\Users\Afshin\Desktop\project\RTProSL-Test";
-            List<string> testClasses = new List<string>();
+            var dllPath = Path.Combine(ProjectsDict[projectKey], "RTProSL-MSTest.dll");
+            var assembly = AssemblyDefinition.ReadAssembly(dllPath);
 
-            foreach (var file in Directory.GetFiles(rootDir, "*.cs", SearchOption.AllDirectories))
+            List<string> tests = new List<string>();
+
+            foreach (var module in assembly.Modules)
             {
-                string[] lines = File.ReadAllLines(file);
-                string namespaceName = "";
-                string className = "";
-                bool hasTestClassAttribute = false;
-
-                Regex namespaceRegex = new Regex(@"^\s*namespace\s+([\w\.]+)");
-                Regex classRegex = new Regex(@"^\s*(public|private|internal|protected|static|final|abstract)?\s*class\s+(\w+)");
-                Regex testClassAttributeRegex = new Regex(@"^\s*\[TestClass\]");
-
-                for (int i = 0; i < lines.Length; i++)
+                foreach (var type in module.Types)
                 {
-                    string line = lines[i];
-
-                    if (testClassAttributeRegex.IsMatch(line))
+                    foreach (var attr in type.CustomAttributes)
                     {
-                        hasTestClassAttribute = true;
-                    }
-
-                    Match nsMatch = namespaceRegex.Match(line);
-                    if (nsMatch.Success)
-                    {
-                        namespaceName = nsMatch.Groups[1].Value;
-                    }
-
-                    Match classMatch = classRegex.Match(line);
-                    if (classMatch.Success)
-                    {
-                        className = classMatch.Groups[2].Value;
-                        break;
-                    }
-                }
-
-                if (hasTestClassAttribute && !string.IsNullOrEmpty(className))
-                {
-                    if (!string.IsNullOrEmpty(namespaceName))
-                    {
-                        testClasses.Add($"{namespaceName}.{className}");
-                    }
-                    else
-                    {
-                        testClasses.Add(className);
+                        if (attr.AttributeType.Name == "TestClassAttribute")
+                        {
+                            tests.Add(type.FullName);
+                        }
                     }
                 }
             }
 
-            return testClasses;
+            return tests;
         }
 
         /// <summary>
