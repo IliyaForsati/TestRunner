@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Test Output</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body { background: #121212; color: #0f0; font-family: monospace; padding: 20px; }
+    pre { background: #000; padding: 10px; max-height: 80vh; overflow-y: auto; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Live Test Output</h1>
+    <pre>{{ log }}</pre>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          log: ''
+        }
+      },
+      mounted() {
+        const ws = new WebSocket("ws://" + location.host + "/ws");
+
+        ws.onmessage = (event) => {
+          this.log += event.data + "\n";
+          this.$nextTick(() => {
+            const pre = document.querySelector('pre');
+            pre.scrollTop = pre.scrollHeight; // اسکرول خودکار
+          });
+        };
+
+        ws.onerror = (err) => {
+          this.log += "\n[Error connecting to server]";
+        };
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

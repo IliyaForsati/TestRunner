@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="3f3a5a27-dd76-41aa-a8a2-dc07611d4561" name="Afshin@ILIYA 2025-05-14 17:00:35" runUser="ILIYA\Afshin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-05-14T17:00:35.3172492+03:30" queuing="2025-05-14T17:00:35.3172494+03:30" start="2025-05-14T17:00:31.5454993+03:30" finish="2025-05-14T17:00:35.3314805+03:30" />
+  <TestSettings name="default" id="844b3eac-6bb0-4ddb-92a2-ae755d74a70a">
+    <Deployment runDeploymentRoot="Afshin_ILIYA_2025-05-14_17_00_35" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="d09164e6-7519-4ae4-b6b4-0fa24e841674" testId="d3a5d3ce-6cce-17b7-1561-c353fb542a05" testName="ValidateDownloadPdfInHelp" computerName="ILIYA" duration="00:00:00.0821180" startTime="2025-05-14T17:00:35.1264751+03:30" endTime="2025-05-14T17:00:35.2085088+03:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d09164e6-7519-4ae4-b6b4-0fa24e841674">
+      <Output>
+        <StdErr>node:internal/modules/cjs/loader:1247&#xD;
+&#xD;
+  throw err;&#xD;
+&#xD;
+  ^&#xD;
+&#xD;
+Error: Cannot find module '../utils'&#xD;
+&#xD;
+Require stack:&#xD;
+&#xD;
+- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js&#xD;
+&#xD;
+- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\cli.js&#xD;
+&#xD;
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)&#xD;
+&#xD;
+    at Function._load (node:internal/modules/cjs/loader:1070:27)&#xD;
+&#xD;
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)&#xD;
+&#xD;
+    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)&#xD;
+&#xD;
+    at Module.require (node:internal/modules/cjs/loader:1335:12)&#xD;
+&#xD;
+    at require (node:internal/modules/helpers:136:16)&#xD;
+&#xD;
+    at Object.&lt;anonymous&gt; (C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js:12:14)&#xD;
+&#xD;
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)&#xD;
+&#xD;
+    at Object..js (node:internal/modules/cjs/loader:1699:10)&#xD;
+&#xD;
+    at Module.load (node:internal/modules/cjs/loader:1313:32) {&#xD;
+&#xD;
+  code: 'MODULE_NOT_FOUND',&#xD;
+&#xD;
+  requireStack: [&#xD;
+&#xD;
+    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\lib\\cli\\programWithTestStub.js',&#xD;
+&#xD;
+    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\cli.js'&#xD;
+&#xD;
+  ]&#xD;
+&#xD;
+}&#xD;
+&#xD;
+Node.js v22.13.1</StdErr>
+        <ErrorInfo>
+          <Message>Microsoft.Playwright.TargetClosedException : Process exited</Message>
+          <StackTrace>   at Microsoft.Playwright.Transport.Connection.InnerSendMessageToServerAsync[T](ChannelOwner object, String method, Dictionary`2 dictionary, Boolean keepNulls) in /_/src/Playwright/Transport/Connection.cs:line 206&#xD;
+   at Microsoft.Playwright.Transport.Connection.WrapApiCallAsync[T](Func`1 action, Boolean isInternal) in /_/src/Playwright/Transport/Connection.cs:line 535&#xD;
+   at Microsoft.Playwright.Transport.Connection.InitializePlaywrightAsync() in /_/src/Playwright/Transport/Connection.cs:line 245&#xD;
+   at Microsoft.Playwright.Playwright.CreateAsync() in /_/src/Playwright/Playwright.cs:line 64&#xD;
+   at Microsoft.Playwright.NUnit.PlaywrightTest.PlaywrightSetup() in /_/src/Playwright.NUnit/PlaywrightTest.cs:line 43&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()&#xD;
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownCommand.&lt;&gt;c__DisplayClass0_0.&lt;.ctor&gt;b__0(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="ValidateDownloadPdfInHelp" storage="c:\users\afshin\desktop\new folder\runnerapp\testrunner\thread#1_results\rtprosl-mstest.dll" id="d3a5d3ce-6cce-17b7-1561-c353fb542a05">
+      <Execution id="d09164e6-7519-4ae4-b6b4-0fa24e841674" />
+      <TestMethod codeBase="C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\RTProSL-MSTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="RTProSL_MSTest.TestClasses.Help" name="ValidateDownloadPdfInHelp" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="d3a5d3ce-6cce-17b7-1561-c353fb542a05" executionId="d09164e6-7519-4ae4-b6b4-0fa24e841674" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.6.0.0: Test execution started&#xD;
+Running selected tests in C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\RTProSL-MSTest.dll&#xD;
+   NUnit3TestExecutor discovered 1 of 1 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+Unhandled exception. System.AggregateException: One or more errors occurred. (Process exited)&#xD;
+ ---&gt; Microsoft.Playwright.TargetClosedException: Process exited&#xD;
+   at Microsoft.Playwright.Transport.Connection.InnerSendMessageToServerAsync[T](ChannelOwner object, String method, Dictionary`2 dictionary, Boolean keepNulls) in /_/src/Playwright/Transport/Connection.cs:line 206&#xD;
+   at Microsoft.Playwright.Transport.Connection.WrapApiCallAsync[T](Func`1 action, Boolean isInternal) in /_/src/Playwright/Transport/Connection.cs:line 535&#xD;
+   at Microsoft.Playwright.Transport.Connection.InitializePlaywrightAsync() in /_/src/Playwright/Transport/Connection.cs:line 245&#xD;
+   at Microsoft.Playwright.Playwright.CreateAsync() in /_/src/Playwright/Playwright.cs:line 64&#xD;
+   at TomLonghurst.Selenium.PlaywrightWebDriver.PlaywrightWebDriver.CreateAsync(PlaywrightBrowserType playwrightBrowserType, BrowserTypeLaunchOptions browserTypeLaunchOptions, BrowserNewContextOptions browserNewContextOptions)&#xD;
+   at SeleniumWebdriver.Settings.ObjectRepository.InitializeDriverAsync(Int32 viewportWidth, Int32 viewportHeight) in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\Settings\ObjectRepository.cs:line 77&#xD;
+   --- End of inner exception stack trace ---&#xD;
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)&#xD;
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)&#xD;
+   at System.Threading.Tasks.Task.Wait()&#xD;
+   at RTProSL_MSTest.InitClasses.InitializeClass.InitWebdriver(TestContext tc) in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\InitClasses\InitializeClass.cs:line 207&#xD;
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_1(Object state)&#xD;
+   at System.Threading.QueueUserWorkItemCallback.Execute()&#xD;
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()&#xD;
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()&#xD;
+NUnit Adapter 4.6.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.0941833+03:30">
+        <Text>node:internal/modules/cjs/loader:1247</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.0944002+03:30">
+        <Text>  throw err;</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.0945977+03:30">
+        <Text>  ^</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1036649+03:30">
+        <Text>Error: Cannot find module '../utils'</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1037781+03:30">
+        <Text>Require stack:</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1038845+03:30">
+        <Text>- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1039898+03:30">
+        <Text>- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\cli.js</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1040971+03:30">
+        <Text>    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1042070+03:30">
+        <Text>    at Function._load (node:internal/modules/cjs/loader:1070:27)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1043124+03:30">
+        <Text>    at TracingChannel.traceSync (node:diagnostics_channel:322:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1044183+03:30">
+        <Text>    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1045288+03:30">
+        <Text>    at Module.require (node:internal/modules/cjs/loader:1335:12)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1046392+03:30">
+        <Text>    at require (node:internal/modules/helpers:136:16)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1047639+03:30">
+        <Text>    at Object.&lt;anonymous&gt; (C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js:12:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1049630+03:30">
+        <Text>    at Module._compile (node:internal/modules/cjs/loader:1562:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1051756+03:30">
+        <Text>    at Object..js (node:internal/modules/cjs/loader:1699:10)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1053828+03:30">
+        <Text>    at Module.load (node:internal/modules/cjs/loader:1313:32) {</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1055850+03:30">
+        <Text>  code: 'MODULE_NOT_FOUND',</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1057267+03:30">
+        <Text>  requireStack: [</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1058306+03:30">
+        <Text>    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\lib\\cli\\programWithTestStub.js',</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1059348+03:30">
+        <Text>    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\cli.js'</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1060473+03:30">
+        <Text>  ]</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1061516+03:30">
+        <Text>}</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.1062600+03:30">
+        <Text>Node.js v22.13.1</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2183798+03:30">
+        <Text>node:internal/modules/cjs/loader:1247</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2187327+03:30">
+        <Text>  throw err;</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2190019+03:30">
+        <Text>  ^</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2194657+03:30">
+        <Text>Error: Cannot find module '../utils'</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2198545+03:30">
+        <Text>Require stack:</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2201368+03:30">
+        <Text>- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2203570+03:30">
+        <Text>- C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\cli.js</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2206306+03:30">
+        <Text>    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2208880+03:30">
+        <Text>    at Function._load (node:internal/modules/cjs/loader:1070:27)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2212487+03:30">
+        <Text>    at TracingChannel.traceSync (node:diagnostics_channel:322:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2215630+03:30">
+        <Text>    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2216695+03:30">
+        <Text>    at Module.require (node:internal/modules/cjs/loader:1335:12)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2217755+03:30">
+        <Text>    at require (node:internal/modules/helpers:136:16)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2218870+03:30">
+        <Text>    at Object.&lt;anonymous&gt; (C:\Users\Afshin\Desktop\New folder\runnerApp\TestRunner\thread#1_results\.playwright\package\lib\cli\programWithTestStub.js:12:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2220797+03:30">
+        <Text>    at Module._compile (node:internal/modules/cjs/loader:1562:14)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2222676+03:30">
+        <Text>    at Object..js (node:internal/modules/cjs/loader:1699:10)</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2223998+03:30">
+        <Text>    at Module.load (node:internal/modules/cjs/loader:1313:32) {</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2225073+03:30">
+        <Text>  code: 'MODULE_NOT_FOUND',</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2226145+03:30">
+        <Text>  requireStack: [</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2227602+03:30">
+        <Text>    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\lib\\cli\\programWithTestStub.js',</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2228741+03:30">
+        <Text>    'C:\\Users\\Afshin\\Desktop\\New folder\\runnerApp\\TestRunner\\thread#1_results\\.playwright\\package\\cli.js'</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2230142+03:30">
+        <Text>  ]</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2231332+03:30">
+        <Text>}</Text>
+      </RunInfo>
+      <RunInfo computerName="ILIYA" outcome="Warning" timestamp="2025-05-14T17:00:35.2232403+03:30">
+        <Text>Node.js v22.13.1</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
