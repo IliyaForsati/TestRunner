@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="adfdd1bb-8a5a-4d3b-bf6e-c35344d5f533" name="Afshin@ILIYA 2025-05-11 09:12:18" runUser="ILIYA\Afshin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-05-11T09:12:18.4764965+03:30" queuing="2025-05-11T09:12:18.4764968+03:30" start="2025-05-11T09:11:10.2298019+03:30" finish="2025-05-11T09:12:18.4924898+03:30" />
+  <TestSettings name="default" id="7487ede5-89a5-451c-a2d3-915687b27d8c">
+    <Deployment runDeploymentRoot="Afshin_ILIYA_2025-05-11_09_12_18" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="4bc6a3dd-48c0-4a01-9e7c-bcab21f72587" testId="119ce77b-0f27-6610-f7f6-e1984e073db9" testName="AllowAddingEquipmentOnFly_Business" computerName="ILIYA" duration="00:01:05.3495880" startTime="2025-05-11T09:11:13.0183113+03:30" endTime="2025-05-11T09:12:18.3678230+03:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4bc6a3dd-48c0-4a01-9e7c-bcab21f72587">
+      <Output>
+        <StdOut>Test method of AllowAddingEquipmentOnFly_Business started at 09:11:17.  Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088/system-setup?path=checkout&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+Take screenshot attempt 1 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 2 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 3 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 4 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 5 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Failed to take a screenshot after maximum attempts.&#xD;
+Response Time: 00 min and 50 sec</StdOut>
+        <ErrorInfo>
+          <Message>Microsoft.Playwright.TargetClosedException : Target page, context or browser has been closed</Message>
+          <StackTrace>   at Microsoft.Playwright.Transport.Connection.InnerSendMessageToServerAsync[T](ChannelOwner object, String method, Dictionary`2 dictionary, Boolean keepNulls) in /_/src/Playwright/Transport/Connection.cs:line 228&#xD;
+   at Microsoft.Playwright.Transport.Connection.WrapApiCallAsync[T](Func`1 action, Boolean isInternal) in /_/src/Playwright/Transport/Connection.cs:line 541&#xD;
+   at Microsoft.Playwright.Core.Frame.QueryCountAsync(String selector) in /_/src/Playwright/Core/Frame.cs:line 357&#xD;
+   at TomLonghurst.Selenium.PlaywrightWebDriver.PlaywrightWebDriver.FindElement(By by)&#xD;
+   at RTProSL_MSTest.ComponentHelper.WebElementInteraction.IsElementPresent(By by, IWebElement context, TimeSpan timeSpan) in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\ComponentHelper\WebElementInteraction.cs:line 529&#xD;
+   at RTProSL_MSTest.TestClasses.BaseClass.CheckErrorDialogBox() in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\TestClasses\BaseClass.cs:line 635&#xD;
+   at RTProSL_MSTest.TestClasses.BaseClass.HandleTestFailure(String message) in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\TestClasses\BaseClass.cs:line 2111&#xD;
+   at RTProSL_MSTest.BussinessTestClasses.Administration.Security_Setup.SystemSetup.AllowAddingEquipmentOnFly_Business() in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\BussinessTestClasses\Administration\Security-Setup\SystemSetup.cs:line 77&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AllowAddingEquipmentOnFly_Business" storage="c:\users\afshin\desktop\project\rtprosl-test\rtprosl-mstest\bin\debug\net7.0\rtprosl-mstest.dll" id="119ce77b-0f27-6610-f7f6-e1984e073db9">
+      <Execution id="4bc6a3dd-48c0-4a01-9e7c-bcab21f72587" />
+      <TestMethod codeBase="C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\bin\Debug\net7.0\RTProSL-MSTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="RTProSL_MSTest.BussinessTestClasses.Administration.Security_Setup.SystemSetup" name="AllowAddingEquipmentOnFly_Business" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="119ce77b-0f27-6610-f7f6-e1984e073db9" executionId="4bc6a3dd-48c0-4a01-9e7c-bcab21f72587" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" passed="0" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.6.0.0: Test execution started&#xD;
+Running selected tests in C:\Users\Afshin\Desktop\project\RTProSL-Test\RTProSL-MSTest\bin\Debug\net7.0\RTProSL-MSTest.dll&#xD;
+   NUnit3TestExecutor discovered 1 of 1 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+Test method of AllowAddingEquipmentOnFly_Business started at 09:11:17.  Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088/system-setup?path=checkout&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+ Navigate To Page http://192.168.1.153:8088&#xD;
+Take screenshot attempt 1 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 2 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 3 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 4 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Take screenshot attempt 5 failed: One or more errors occurred. (Target page, context or browser has been closed)&#xD;
+Failed to take a screenshot after maximum attempts.&#xD;
+Response Time: 00 min and 50 sec&#xD;
+&#xD;
+NUnit Adapter 4.6.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

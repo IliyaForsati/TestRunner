@@ -4,42 +4,148 @@
   <meta charset="UTF-8" />
   <title>Live Test Output</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
   <style>
-    body { background: #121212; color: #0f0; font-family: monospace; padding: 20px; }
-    pre { background: #000; padding: 10px; max-height: 80vh; overflow-y: auto; border-radius: 8px; }
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: hwb(120 90% 10%);
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .form-box {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff00aa;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 300px;
+    }
+
+    .form-box input, .form-box button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-box input {
+      background-color: #000;
+      color: #0f0;
+    }
+
+    .form-box button {
+      background-color: #00aa00;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .terminal-box {
+      background-color: #000;
+      padding: 20px;
+      width: 80vw;
+      height: 80vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff00aa;
+      white-space: pre-wrap;
+      display: none;
+    }
+
+    .terminal-box.active {
+      display: block;
+    }
+
+    .terminal-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.terminal-box::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 5px;
+}
+
+.terminal-box::-webkit-scrollbar-thumb {
+  background-color: #00ff00;
+  border-radius: 5px;
+  border: 2px solid #1e1e1e;
+}
+
+.terminal-box {
+  scrollbar-width: thin;
+  scrollbar-color: #00ff00 #1e1e1e;
+}
   </style>
+
+
 </head>
 <body>
   <div id="app">
-    <h1>Live Test Output</h1>
-    <pre>{{ log }}</pre>
+    <div v-if="!started" class="form-box">
+      <input v-model="input1" placeholder="Number of Threads" type="number" required />
+      <input v-model="input2" placeholder="Number of" type="number" required />
+      <button @click="startTest">Start Test</button>
+    </div>
+
+    <div class="terminal-box" :class="{ active: started }" v-html="log"></div>
   </div>
 
+  
   <script>
     const { createApp } = Vue;
 
     createApp({
       data() {
         return {
-          log: ''
-        }
+          log: '',
+          input1: '',
+          input2: '',
+          ws: null,
+          started: false
+        };
       },
-      mounted() {
-        const ws = new WebSocket("ws://" + location.host + "/ws");
+      methods: {
+        highlight(text) {
+          return text
+            .replace(/\bPass(ed)?:?\b/g, '<span style="color: #0f0;">PASS</span>')
+            .replace(/\bFail(ed)?:?\b/g, '<span style="color: red;">FAIL</span>')
+            .replace(/\bresults:?\b/g, '<span style="color: orange;">ERROR</span>')
+            .replace(/ERROR/g, '<span style="color: orange;">ERROR</span>')
+            .replace(/WARNING/g, '<span style="color: orange;">ERROR</span>')
+            .replace(/\b\d{2}:\d{2}:\d{2}\b/g, '<span style="color: cyan;">$&</span>');
+        },
+        startTest() {
+          this.started = true;
+          this.ws = new WebSocket("ws://" + location.host + "/ws");
 
-        ws.onmessage = (event) => {
-          this.log += event.data + "\n";
-          this.$nextTick(() => {
-            const pre = document.querySelector('pre');
-            pre.scrollTop = pre.scrollHeight; // اسکرول خودکار
-          });
-        };
+          this.ws.onopen = () => {
+            this.ws.send(`${this.input1}`);
+            this.ws.send(`${this.input2}`);
+          };
 
-        ws.onerror = (err) => {
-          this.log += "\n[Error connecting to server]";
-        };
+          this.ws.onmessage = (event) => {
+            this.log += this.highlight(event.data) + "<br/>";
+            this.$nextTick(() => {
+              const box = document.querySelector('.terminal-box');
+              box.scrollTop = box.scrollHeight;
+            });
+          };
+
+          this.ws.onerror = () => {
+            this.log += "<br/><span style='color: red;'>[Connection error]</span>";
+          };
+        }
       }
     }).mount("#app");
   </script>
+
 </body>
 </html>

@@ -1,0 +1,72 @@
+{
+  "AddNewArriveList": {
+    "setup": {
+      "UseWebsite": true,
+      "UsePartner": false
+    }
+  },
+  "AddPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "DeletePartner": {
+    "setup": {
+      "UsePartner": true
+    }  
+  },
+  "EditPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ArrowNextBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ArrowPreviousBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ArrowFirstBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ArrowLastBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "InactiveBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ActiveBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+
+  "ListViewtBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+
+  "CardViewBtnCheckPartner": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "ValidateRefreshRecordDataInPartnerGrid": {
+    "setup": {
+      "UsePartner": true
+    }
+  },
+  "DeleteSpaceHoldStatus": {}
+
+}

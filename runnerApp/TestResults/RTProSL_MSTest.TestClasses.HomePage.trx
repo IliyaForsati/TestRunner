@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="7d23c65c-fb29-4d6f-ba79-b45e3ec335fa" name="Afshin@ILIYA 2025-05-18 10:21:08" runUser="ILIYA\Afshin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-05-18T10:21:08.5206921+03:30" queuing="2025-05-18T10:21:08.5206925+03:30" start="2025-05-18T10:21:05.1133591+03:30" finish="2025-05-18T10:21:08.5326187+03:30" />
+  <TestSettings name="default" id="bced563e-6699-4027-85ca-bd27630b9622">
+    <Deployment runDeploymentRoot="Afshin_ILIYA_2025-05-18_10_21_08" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="0a59fb61-0223-4d4a-b25f-e4c41085851e" testId="cd4b4b3d-f566-585a-c950-d3e224ab3d76" testName="ValidateCurrentChangeLocation" computerName="ILIYA" duration="00:00:01.5520850" startTime="2025-05-18T10:21:06.8450051+03:30" endTime="2025-05-18T10:21:08.3970135+03:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a59fb61-0223-4d4a-b25f-e4c41085851e">
+      <Output>
+        <StdOut>Using Edge Driver  &#xD;
+Test method of ValidateCurrentChangeLocation started at 10:21:08. Response Time: 00 min and 00 sec</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="ValidateCurrentChangeLocation" storage="c:\users\afshin\desktop\folder\runnerapp\testrunner\thread#1_results\rtprosl-mstest.dll" id="cd4b4b3d-f566-585a-c950-d3e224ab3d76">
+      <Execution id="0a59fb61-0223-4d4a-b25f-e4c41085851e" />
+      <TestMethod codeBase="C:\Users\Afshin\Desktop\folder\runnerApp\TestRunner\thread#1_results\RTProSL-MSTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="RTProSL_MSTest.TestClasses.HomePage" name="ValidateCurrentChangeLocation" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="cd4b4b3d-f566-585a-c950-d3e224ab3d76" executionId="0a59fb61-0223-4d4a-b25f-e4c41085851e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.6.0.0: Test execution started&#xD;
+Running selected tests in C:\Users\Afshin\Desktop\folder\runnerApp\TestRunner\thread#1_results\RTProSL-MSTest.dll&#xD;
+   NUnit3TestExecutor discovered 1 of 1 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+ Using Edge Driver  &#xD;
+Test method of ValidateCurrentChangeLocation started at 10:21:08. Response Time: 00 min and 00 sec&#xD;
+&#xD;
+NUnit Adapter 4.6.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
